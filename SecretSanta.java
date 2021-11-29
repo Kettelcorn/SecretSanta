@@ -10,14 +10,8 @@ public class SecretSanta {
       System.out.println("How many seperate groups do you want to create within the main group");
       System.out.print("that do not give gifts to those inside their group? ");
       int subGroups = console.nextInt();
-      System.out.print("Do you want to avoid having repeat partners from last year (y or n)? ");
-      String repeat = console.next().toLowerCase();
       System.out.println();
-      if (repeat.toLowerCase().equals("y")){
-         repeatYear(size, subGroups, rand, console);
-      } else {
-         regular();
-      }
+      repeatYear(size, subGroups, rand, console);
    }
    
    public static void intro() {
@@ -76,8 +70,5 @@ public class SecretSanta {
       for (int i = 0; i < max; i++) {
          System.out.println(names[i] + " is giving to: " + givingTo[i]);   
       }
-   }
-   public static void regular() {
-   
    }
 }
