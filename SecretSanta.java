@@ -4,7 +4,7 @@
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
-public class SecretSantaProgram {
+public class SecretSanta {
    public static final String TITLE = "Secret Santa";
    public static void main(String[] args) throws FileNotFoundException {
       JFrame frame = new JFrame();
@@ -12,7 +12,7 @@ public class SecretSantaProgram {
       intro(frame);
       String out = JOptionPane.showInputDialog(null, "Output File?",
        TITLE, JOptionPane.QUESTION_MESSAGE);
-      PrintStream output = new PrintStream(new File(out));
+      PrintStream output = new PrintStream(out);
       int size = Integer.parseInt(JOptionPane.showInputDialog(null, "How many people will be in your group?",
        TITLE, JOptionPane.QUESTION_MESSAGE));
       int subGroups = Integer.parseInt(JOptionPane.showInputDialog(null, "How many sub-groups will there be?",
@@ -53,7 +53,8 @@ public class SecretSantaProgram {
    }
    
    // calculates new partners for the new secret santa, checking to 
-   // meet all of the conditions set. 
+   // meet all of the conditions set, then outputs results to user
+   // and on choosen text file.
    public static void calculatePartners(int subGroups, String[] names, Random rand, 
                         String[] gaveTo, String[] givingTo, 
                         int[] groupSize, JFrame frame, PrintStream output) {
@@ -80,10 +81,12 @@ public class SecretSantaProgram {
       }
       System.out.println();
       int max = names.length;
+      String message = "";
       for (int i = 0; i < max; i++) { 
-         String message = names[i] + " is giving to: " + givingTo[i];
-         JOptionPane.showMessageDialog(null, message, TITLE, JOptionPane.INFORMATION_MESSAGE);        
-         output.println(names[i] + " is giving to: " + givingTo[i]);   
+         message += names[i] + " is giving to: " + givingTo[i] + "\n";   
       }
+      JOptionPane.showMessageDialog(null, message , TITLE, JOptionPane.INFORMATION_MESSAGE);
+      output.println(message);
+      System.exit(0);
    }
 }
